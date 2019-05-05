@@ -1,24 +1,25 @@
 package methods;
 
 import java.applet.AudioClip;
-import java.io.File;
-import java.net.MalformedURLException;
 import java.util.Random;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.JApplet;
 import javax.swing.JOptionPane;
 
 public class SafeCracker {
+	static boolean dontGotIt = true;
 
 	public static void main(String[] args) {
 		/*
 		 * Your mission: use the tryCode method to crack the safe by trying all possible
 		 * combinations
 		 */
-		
+		int i = 9999900;
+		while (dontGotIt) {
+			tryCode(i);
+			tryCode(i + 1);
+			i = i + 2;
+		}
 
 	}
 
@@ -30,7 +31,9 @@ public class SafeCracker {
 		if (guess == secretCode) {
 			JOptionPane.showMessageDialog(null, "Congratulations! You cracked the safe with " + guess);
 			playTheSoundOfSuccess();
+			dontGotIt = false;
 			System.exit(0);
+
 		}
 	}
 
